@@ -113,7 +113,7 @@ main {
 }
 section {
     background: var(--surface);
-    margin: 24px 0;
+    margin: 24px 16px;
     padding: 32px;
     border-radius: 12px;
     box-shadow: var(--shadow);
@@ -314,5 +314,53 @@ footer {
 
     nav ul { flex-direction: column; }
     .menu-toggle { display: block; }
+}
+
+/* Tabs */
+.tabs {
+    margin: 15px 0;
+    display: flex;
+    gap: 10px;
+}
+.tab-button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    background: var(--primary);
+    color: #fff;
+    transition: background 0.3s ease;
+}
+.tab-button:hover {
+    background: var(--accent);
+}
+.tab-button.active {
+    background: var(--accent);
+}
+
+/* Conteúdo das abas */
+.tab-content {
+    display: none;
+    margin-top: 15px;
+}
+.tab-content.active {
+    display: block;
+}
+
+/* Checklist */
+.checklist {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #f9f9f9;
+}
+.checklist h4 {
+    margin-bottom: 10px;
+}
+.checklist input[type="checkbox"] {
+    margin-right: 8px;
 }
 

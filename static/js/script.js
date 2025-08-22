@@ -111,5 +111,35 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Mensagem enviada! Seus dados foram salvos no navegador.');
         });
     }
-
 });
+
+// ---- Tabs dos formulários ----
+document.addEventListener("DOMContentLoaded", () => {
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const tabContents = document.querySelectorAll(".tab-content");
+
+    tabButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const tabId = button.getAttribute("data-tab");
+
+            // Remove active de todos
+            tabButtons.forEach(b => b.classList.remove("active"));
+            tabContents.forEach(c => c.classList.remove("active"));
+
+            // Ativa o botão e conteúdo correspondente
+            button.classList.add("active");
+            document.getElementById(tabId).classList.add("active");
+        });
+    });
+
+    // ---- Checklist com localStorage ----
+    document.querySelectorAll(".checklist input[type='checkbox']").forEach(box => {
+        const id = box.id;
+        box.checked = localStorage.getItem(id) === "true";
+
+        box.addEventListener("change", () => {
+            localStorage.setItem(id, box.checked);
+        });
+    });
+})
+
