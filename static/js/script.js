@@ -49,22 +49,21 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ======================
        MENU MOBILE
     ====================== */
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navEl = document.querySelector('nav');
-
-    if (menuToggle && navEl) {
+    const menuToggle = document.getElementById('menu-toggle');
+    const mainMenu = document.getElementById('main-menu');
+    if (menuToggle && mainMenu) {
         menuToggle.addEventListener('click', () => {
-            const open = navEl.getAttribute('aria-expanded') === 'true';
-            navEl.setAttribute('aria-expanded', String(!open));
-            menuToggle.setAttribute('aria-expanded', String(!open));
+            mainMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
         });
 
-        // Dropdown abre por clique em telas pequenas
-        document.querySelectorAll('.dropdown > a').forEach(a => {
-            a.addEventListener('click', (e) => {
-                if (window.matchMedia('(max-width:768px)').matches) {
+        // Submenu cascata no mobile
+        document.querySelectorAll('#main-menu > li.dropdown > a').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 900) {
                     e.preventDefault();
-                    a.parentElement.classList.toggle('open');
+                    const parent = link.parentElement;
+                    parent.classList.toggle('active');
                 }
             });
         });
@@ -117,11 +116,11 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener("DOMContentLoaded", () => {
     const tabButtons = document.querySelectorAll(".tab-button");
     const tabContents = document.querySelectorAll(".tab-content");
+    const iframe = document.getElementById("simulado-iframe"); // Adicione o id ao seu iframe no HTML
 
     tabButtons.forEach(button => {
         button.addEventListener("click", () => {
             const tabId = button.getAttribute("data-tab");
-
             // Remove active de todos
             tabButtons.forEach(b => b.classList.remove("active"));
             tabContents.forEach(c => c.classList.remove("active"));
@@ -129,6 +128,14 @@ document.addEventListener("DOMContentLoaded", () => {
             // Ativa o botão e conteúdo correspondente
             button.classList.add("active");
             document.getElementById(tabId).classList.add("active");
+
+            // Troca o src do iframe conforme o tab
+            if (iframe) {
+                const simuladoSrc = button.getAttribute("data-src"); // Adicione data-src nos botões das tabs
+                if (simuladoSrc) {
+                    iframe.src = simuladoSrc;
+                }
+            }
         });
     });
 
@@ -141,5 +148,5 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem(id, box.checked);
         });
     });
-})
+});
 
