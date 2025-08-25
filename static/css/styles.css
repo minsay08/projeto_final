@@ -41,15 +41,17 @@ h1 {
     font-size: 48px;
     font-weight: 900;
     color: var(--primary);
-    margin-bottom: 12px;
+    margin-bottom: 0 12px;
+    background: var(--surface);
 }
 
 nav {
     background: #fff;
     box-shadow: var(--shadow);
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 1000;
+    width: 100%;
 }
 nav ul {
     display: flex;
